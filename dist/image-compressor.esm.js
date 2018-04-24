@@ -5,7 +5,7 @@
  * Copyright (c) 2017-2018 Xkeshi
  * Released under the MIT license
  *
- * Date: 2018-03-23T01:35:12.857Z
+ * Date: 2018-04-24T21:44:25.765Z
  */
 
 function createCommonjsModule(fn, module) {
@@ -751,9 +751,13 @@ var ImageCompressor = function () {
           };
 
           if (canvas.toBlob) {
-            canvas.toBlob(done, options.mimeType, options.quality);
+            setTimeout(function () {
+              canvas.toBlob(done, options.mimeType, options.quality);
+            });
           } else {
-            done(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
+            setTimeout(function () {
+              done(canvasToBlob(canvas.toDataURL(options.mimeType, options.quality)));
+            });
           }
         });
       }).then(function (_ref3) {

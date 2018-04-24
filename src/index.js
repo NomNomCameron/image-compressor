@@ -221,9 +221,13 @@ export default class ImageCompressor {
         };
 
         if (canvas.toBlob) {
-          canvas.toBlob(done, options.mimeType, options.quality);
+          setTimeout(() => {
+            canvas.toBlob(done, options.mimeType, options.quality);
+          });
         } else {
-          done(toBlob(canvas.toDataURL(options.mimeType, options.quality)));
+          setTimeout(() => {
+            done(toBlob(canvas.toDataURL(options.mimeType, options.quality)));
+          })
         }
       }))
       .then(({
